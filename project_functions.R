@@ -46,7 +46,7 @@ predictnw <- function(textinput)
         {
                 pred <- "Please, enter some words"
         }
-        
+        pred <- unique(pred)
         if(length(pred)==0)
         {
                 pred <- "Sorry but I was unable to suggest something"

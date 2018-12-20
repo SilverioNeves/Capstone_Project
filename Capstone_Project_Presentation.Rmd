@@ -1,0 +1,47 @@
+---
+title: "Predicting Next Word Application"
+author: "Silverio Neves"
+date: "20 de Dezembro de 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(imager)
+im1 <- load.image("webapp_1.PNG")
+im2 <- load.image("webapp_2.PNG")
+
+```
+
+## Suggesting Next Word Web Application
+Using text mining techniques it was developed a web application to suggest the next word after inserting words by the user. The next word is predicted based on an sample (15%) of the English part of SwiftKey data (https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip).
+
+This presentation will show you how the web application works and the structure / algorithm that is applied.
+
+Any question, please contact Silverio Neves (silveriomsn@gmail.com). The project was developped for the Capstone Project (Data Science Specialization - Coursera course - John Hoptins University)
+
+
+## How to use the web application (part I)
+The user has an input text section on the left side to insert a text.
+
+```{r userid1, fig.width=8, fig.height=4, echo=FALSE}
+plot(im1, axes = FALSE)
+```
+
+## How to use the web application (part II)
+After inserting the text the user can click on the button bellow the text to perform the algorithm and show the suggested words.
+
+```{r userid2, fig.width=8, fig.height=4, echo=FALSE}
+plot(im2, axes = FALSE)
+```
+
+## How the prediction algorithm was buitlt 
+From the blogs, twitter and news data was construct a single database for 4-gram, 3-gram and 2-gram. 
+
+If input text has 4 or more words
+- Capture the last 3 words and check in four 4-gram with the first 3 words. If there is no results it will use only the last 2 words of the input text and check with the second and third in the 4-gram.
+
+- With no results the algorithm will use the last 2 words of the input text to check in the 3-gram data base. if no results will use the last word of the input text to check in the 3-gram and 2-gram if necessary.
+
+## Conclusions
+Becasue of performance issues, it was built the n-gram database using only 15% of the original data. To have better results it is recommended to includ more data, but it is a tradeoff between performance (time) and accuracy.
